@@ -20,10 +20,11 @@ class Link {
 // ---------- Ramu logic ---------- //
 // ---------- ---------- ---------- //
 
-const g1 = new Actor(100,100,40,40, 'user')
+const a = new Activity("emitir nota", 300, 200, 75, 50)
+const g1 = new Actor(100,100, 40,40, 'user')
 const g2 = new Actor(300, 300, 40, 40, 'adm')
-const li = new Line(new Link(g1, g2))
-const li2 = new Line(new Link(g2, g1))
+const li = new Line(new Link(g1, a))
+const li2 = new Line(new Link(g2, a))
 
 Ramu.init()
 // Ramu.debugMode = true

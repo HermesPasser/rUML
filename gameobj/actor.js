@@ -4,8 +4,8 @@ class Actor extends MovableEntity {
 	constructor(x, y, w, h, txt) {
 		super(x, y, w , h)
 		this.label = new Ramu.Text(txt, x, y, 100, 5)
-		this.label.fillStyle = 'maroon'
 		this.tag = 'actor_' + txt
+		this.label.tag = `$Text-of({this.tag})`
 	}
 	
 	update() {
@@ -20,16 +20,20 @@ class Actor extends MovableEntity {
 		const halfWidth = this.width / 2
 		const halfHeigh = this.height / 2
 		const centerX = this.x + halfWidth
-		const radious = percent(15, this.width)
-		const bodyY = this.y + (2 * radious)
-		const bodyHeight = this.height - (2 * radious)
+		const radius = percent(15, this.width)
+		const bodyY = this.y + (2 * radius)
+		const bodyHeight = this.height - (2 * radius)
 		const halfBodyHeight = bodyHeight / 2
 		const c = Ramu.ctx
+		const oldFill = c.fillStyle
 		
 		// head
+		c.fillStyle = this.fillStyle
 		c.beginPath()
-		c.arc(centerX, this.y + radious, radious, 0, 2 * Math.PI)
+		c.arc(centerX, this.y + radius, radius, 0, 2 * Math.PI)
+		c.fill()
 		c.stroke()
+		c.fillStyle = oldFill
 		
 		// body
 		c.beginPath()

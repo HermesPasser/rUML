@@ -1,6 +1,9 @@
 "use strict"
 
 class MovableEntity extends Drawable {
+	margin = 5
+	fillStyle = '#fdfd96'
+	
 	constructor(x, y, w, h) {
 		super(x, y, w, h, true)
 		this.clickable = new Clickable(x, y, w, h)
@@ -26,23 +29,22 @@ class MovableEntity extends Drawable {
 	update() {
 		this._updateClickableRect()
 		this._updatePosition()
-		
 	}
 	
 	get topAnchor() {
-		return { x: this.x + this.width / 2, y: this.y }
+		return { x: this.x + this.width / 2, y: this.y - this.margin }
 	}
 	
 	get leftAnchor() {
-		return { x: this.x, y: this.y + this.height / 2 }
+		return { x: this.x - this.margin, y: this.y + this.height / 2 }
 	}
 	
 	get rightAnchor() {
-		return { x: this.x + this.width, y: this.y + this.height / 2 }
+		return { x: this.x + this.width + this.margin, y: this.y + this.height / 2 }
 	}
 	
 	get bottomAnchor() {
-		return { x: this.x + this.width / 2, y: this.y + this.height }
+		return { x: this.x + this.width / 2, y: this.y + this.height + this.margin }
 	}
 	
 	draw() {

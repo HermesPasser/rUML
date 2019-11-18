@@ -47,12 +47,9 @@ class Line extends Drawable {
 		if (Ramu.debugMode) // draw the origin (from) side 
 			Ramu.ctx.fillRect(this.originX, this.originY, 2, 2)
 		
-		const oldStyle = Ramu.ctx.strokeStyle
-		Ramu.ctx.strokeStyle = 'gray'
 		Ramu.ctx.beginPath()
 		Ramu.ctx.lineTo(this.originX, this.originY)
 		Ramu.ctx.lineTo(this.targetX, this.targetY)
 		Ramu.ctx.stroke()
-		Ramu.ctx.strokeStyle = oldStyle
 	}
 }
