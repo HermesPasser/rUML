@@ -14,7 +14,29 @@ class Line extends Drawable {
 		this.to = link.to
 	}
 	
-	update() {  
+	static fromJson(data) {
+		const fromTag = data.from
+		const toTag = data.to	
+		const link = new Link(Entities[fromTag], Entities[toTag], data.type)
+		let instance = new (getClass(data.type))(link)
+		return instance
+	}
+	
+	toJSON() {
+		return {
+			'text': '', // aqui n tem texto mas algumas linhas tem
+			'type': this.constructor.name,
+			'id': this.tag,
+			'from': this.from.tag,
+			'to': this.to.tag,
+		}
+	}
+	
+	update() {
+		// if the actors/activity does not exists then so the line will
+		if (!this.from || !this.to || this.from.canDestroy || this.to.canDestroy)		
+				this.destroy()
+		
 		if (this.from.x  < this.to.x) {		
 			if (this.from.y  < this.to.y) {
 				const ob = this.from.bottomAnchor,

@@ -1,24 +1,37 @@
 <!doctype html>
 <html> 
 	<head>
-		<title>Test</title>
-		<style>
-			body { background-color: gray;}
-			canvas {
-				background-color: #ffffff;
-				display: block;
-				margin-left: auto;
-				margin-right: auto;
-			}
-		</style>
+		<title>RUML</title>
+		<link rel="stylesheet" type="text/css" href="style.css" />
 	</head>
 	<body>
 		<script src="ramu-0.7c.js" type="text/javascript"></script>
+		<script src="json-utilities.js" type="text/javascript"></script>
 		<script src="gameobj/extensions.js" type="text/javascript"></script>
-		<script src="gameobj/line.js" type="text/javascript"></script>
+		<script src="gameobj/line/line.js" type="text/javascript"></script>
+		<script src="gameobj/line/dashedline.js" type="text/javascript"></script>
+		<script src="gameobj/line/extends.js" type="text/javascript"></script>
+		<script src="gameobj/line/include.js" type="text/javascript"></script>
 		<script src="gameobj/movable.js" type="text/javascript"></script>
 		<script src="gameobj/actor.js" type="text/javascript"></script>
 		<script src="gameobj/activity.js" type="text/javascript"></script>
 		<script src="main.js" type="text/javascript"></script>
+		
+		<main class="grid-container">
+			<content class="props">
+				<p>adc informações importantes aqui</p>
+				<select id="select-props" ></select>
+				<p>ctrl: focus the text box</p>
+				<p>Command: add actor|activity name*</p>
+				<a href="#" id="down-img" onclick="saveImage()">export image</a>
+				<a href="#" id="down-json" onclick="saveJson()">export uml</a>
+				<a href="#" id="up-json"onclick="loadJson()">load</a>
+			</content>
+			<content class="cmd">
+				<input id="command-input" type"text" />
+			</content>
+			<content class="div-canvas">
+			</content>
+		</main>	
 	</body>
 </html> 

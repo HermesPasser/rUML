@@ -1,23 +1,24 @@
 "use strict"
 
+// TODO: make maxWidth break the line when the text trespass the activity boundaries in the Ramu.Text
+// AND make the activity size increse if the number of lines of text
+// surpass the size of the activity baloon
 class Activity extends MovableEntity {
-	constructor(txt, x, y, w, h) {
-		super(x, y, w , h)
-		// TODO: make maxWidth break the line when the text trespass the activity boundaries
-		this.label = new Ramu.Text(txt, x, y, 100, 5)
+	constructor(x, y, w, h, txt) {
+		super(x, y, w , h, txt)
 		this.tag = 'activity_' + txt
-		this.label.tag = `$Text-of({this.tag})`
 	}
 	
 	update() {
 		super.update()
-		const lineHeight = this.label.getTextHeight();
-		this.label.x = this.x + this.width / 2 - this.label.textWidth / 2
-		this.label.y = this.y + this.height / 2 + lineHeight / 2
+		let lineHeight = this.label.getTextHeight() / 2
+		if (this.label.lineCount > 1)
+			lineHeight -= this.label.lineHeight / 2
+		this.label.x = this.x + this.width / 2 - this.label.largestLineWidth / 2
+		this.label.y = this.y + this.height / 2 + (lineHeight)
 	}
 	
-	draw() {
-		super.draw()
+	drawEntity() {
 		const percent = (per, val) => (per * val)  / 100
 		const centerX = this.x + this.width / 2
 		const centerY = this.y + this.height / 2
@@ -28,7 +29,7 @@ class Activity extends MovableEntity {
 		
 		if (Ramu.debugMode)
 			c.strokeRect(this.x, this.y, this.width, this.height)
-		
+
 		c.fillStyle = this.fillStyle
 		c.beginPath()
 		c.ellipse(centerX, centerY, radiousX, radiousY, 0, 0, 2 * Math.PI)

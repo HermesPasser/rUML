@@ -1,0 +1,47 @@
+body { 
+	background-color: gray;
+}
+
+canvas {
+	background-color: #ffffff;
+	display: block;
+	margin: 0;
+	padding: 0;
+	/* margin-right: auto; */
+}
+
+#command-input, select {
+	width: 100%;
+}
+
+.props { 
+	background-color: red;
+	/* width: 50%; */
+}
+
+.cmd { 
+	top:0px;
+	background-color: green;
+	/* height: 20%; */
+}
+
+.div-canvas { 
+	background-color: blue;
+	/* height: 80%; */
+}
+
+.props { grid-area: props; }
+
+.cmd { grid-area: cmd; }
+
+.div-canvas { grid-area: div-canvas; }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr auto;
+  grid-template-areas:  "props cmd cmd cmd" 
+						"props div-canvas div-canvas div-canvas" 
+						"props div-canvas div-canvas div-canvas";
+}
+
